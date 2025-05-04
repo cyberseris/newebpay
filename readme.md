@@ -58,4 +58,4 @@ npm start
 - 藍新金流開發文件：https://www.newebpay.com/website/Page/content/download_api
 - npm node-newebpay：https://www.npmjs.com/package/node-newebpay
 - 部落格資料：https://ctaohe.github.io/2019/10/19/2019-10-19_newebpay/
-- chatgpt 產生資料註冊企業會員， https://cwww.newebpay.com/website/Page/content/register
+- chatgpt 產生資料，國民身分證樣本(陳筱玲)，存摺樣本(陳筱玲)，註冊測試版企業會員， https://cwww.newebpay.com/website/Page/content/register
