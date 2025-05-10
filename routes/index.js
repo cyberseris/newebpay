@@ -99,11 +99,13 @@ router.post('/newebpay_notify', function (req, res, next) {
   }
 
   // 交易完成，將成功資訊儲存於資料庫
-  console.log('付款完成，訂單：', orders[data?.Result?.MerchantOrderNo]);
+  console.log('付款完成，訂單： ', orders[data?.Result?.MerchantOrderNo]);
 
-  console.log("====================newebpay_notify orders====================")
+  console.log("====================newebpay_notify orders aesEncrypt====================")
+
+  console.log("aesEncrypt: ", orders[data?.Result?.MerchantOrderNo])
   console.log('付款完成，訂單：', createAesDecrypt(orders[data?.Result?.MerchantOrderNo].aesEncrypt));
-  console.log("====================newebpay_notify orders====================")
+  console.log("====================newebpay_notify orders aesEncrypt====================")
 
   return res.end();
 });
