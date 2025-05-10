@@ -103,8 +103,8 @@ router.post('/newebpay_notify', function (req, res, next) {
 
   console.log("====================newebpay_notify orders aesEncrypt====================")
 
-  console.log("aesEncrypt: ", orders[data?.Result?.MerchantOrderNo])
-  console.log('付款完成，訂單：', createAesDecrypt(orders[data?.Result?.MerchantOrderNo].aesEncrypt));
+  console.log("aesEncrypt: ", orders[data?.Result?.MerchantOrderNo]['aesEncrypt'])
+  console.log('付款完成，訂單：', createAesDecrypt(orders[data?.Result?.MerchantOrderNo]['aesEncrypt']));
   console.log("====================newebpay_notify orders aesEncrypt====================")
 
   return res.end();
