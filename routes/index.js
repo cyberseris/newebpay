@@ -64,20 +64,28 @@ router.get('/check/:id', (req, res, next) => {
 
 // 交易成功：Return （可直接解密，將資料呈現在畫面上）
 router.post('/newebpay_return', function (req, res, next) {
+  console.log("====================newebpay_return====================")
   console.log('/newebpay_return', req.body);
+  console.log("====================newebpay_return====================")
   res.render('success', { title: 'Express' });
 });
 
 // 確認交易：Notify
 router.post('/newebpay_notify', function (req, res, next) {
   const response = req.body;
+  console.log("====================newebpay_notify====================")
   console.log('/newebpay_notify', req.body);
+  console.log("====================newebpay_notify====================")
   // 解密交易內容
   const data = createSesDecrypt(response.TradeInfo);
+  console.log("====================newebpay_notify data====================")
   console.log('data:', data);
+  console.log("====================newebpay_notify data====================")
 
+  console.log("====================newebpay_notify orders====================")
   // 取得交易內容，並查詢本地端資料庫是否有相符的訂單
   console.log(orders[data?.Result?.MerchantOrderNo]);
+  console.log("====================newebpay_notify orders====================")
   if (!orders[data?.Result?.MerchantOrderNo]) {
     console.log('找不到訂單');
     return res.end();
