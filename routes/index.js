@@ -77,7 +77,7 @@ router.post('/newebpay_notify', function (req, res, next) {
   console.log('/newebpay_notify', req.body);
   console.log("====================newebpay_notify====================")
   // 解密交易內容
-  const data = createSesDecrypt(response.TradeInfo);
+  const data = createAesDecrypt(response.TradeInfo);
   console.log("====================newebpay_notify data====================")
   console.log('data:', data);
   console.log("====================newebpay_notify data====================")
@@ -100,6 +100,10 @@ router.post('/newebpay_notify', function (req, res, next) {
 
   // 交易完成，將成功資訊儲存於資料庫
   console.log('付款完成，訂單：', orders[data?.Result?.MerchantOrderNo]);
+
+  console.log("====================newebpay_notify orders====================")
+  console.log('付款完成，訂單：', createAesDecrypt(orders[data?.Result?.MerchantOrderNo].aesEncrypt));
+  console.log("====================newebpay_notify orders====================")
 
   return res.end();
 });
@@ -136,7 +140,7 @@ function createShaEncrypt(aesEncrypt) {
 }
 
 // 對應文件 21, 22 頁：將 aes 解密
-function createSesDecrypt(TradeInfo) {
+function createAesDecrypt(TradeInfo) {
   const decrypt = crypto.createDecipheriv('aes256', HASHKEY, HASHIV);
   decrypt.setAutoPadding(false);
   const text = decrypt.update(TradeInfo, 'hex', 'utf8');
