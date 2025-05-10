@@ -65,20 +65,14 @@ router.get('/check/:id', (req, res, next) => {
 // 交易成功：Return （可直接解密，將資料呈現在畫面上）
 router.post('/newebpay_return', function (req, res, next) {
   console.log('req.body notify data', req.body);
-  res.send('newebpay_return', req.body);
-  /* console.log('req.body return data', req.body);
-  res.render('success', { title: 'Express' }); */
+  res.render('success', { title: 'Express' });
 });
 
 // 確認交易：Notify
 router.post('/newebpay_notify', function (req, res, next) {
   const response = req.body;
-
   console.log('req.body notify data', req.body);
-  res.send('newebpay_notify', req.body);
-  
-
-/*   // 解密交易內容
+  // 解密交易內容
   const data = createSesDecrypt(response.TradeInfo);
   console.log('data:', data);
 
@@ -87,7 +81,7 @@ router.post('/newebpay_notify', function (req, res, next) {
   if (!orders[data?.Result?.MerchantOrderNo]) {
     console.log('找不到訂單');
     return res.end();
-  } */
+  }
 
   // 使用 HASH 再次 SHA 加密字串，確保比對一致（確保不正確的請求觸發交易成功）
   const thisShaEncrypt = createShaEncrypt(response.TradeInfo);
