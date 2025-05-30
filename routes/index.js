@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
 });
 router.post('/createOrder', (req, res) => {
   const data = req.body;
-  console.log(data);
+  console.log(data); //Email, Amt, ItemDesc(訂購商品)
 
   // 使用 Timestamp 作為訂單編號（金流也需要加入時間戳記）
   const TimeStamp = Math.round(new Date().getTime() / 1000);
@@ -48,7 +48,7 @@ router.post('/createOrder', (req, res) => {
 });
 
 router.get('/check/:id', (req, res, next) => {
-  const { id } = req.params;
+  const { id } = req.params; //TimeStamp
   const order = orders[id];
   console.log(order);
   res.render('check', {
